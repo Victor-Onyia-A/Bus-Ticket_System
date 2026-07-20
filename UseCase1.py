@@ -28,7 +28,20 @@ with open('mobile_products.csv', mode = 'r') as file:
 print("Please choose a category of tickets")
 for cat in listOfCatClasses:
     print("For",cat.GetCategory(),"enter",cat.GetCode())
-choice= int(input("Enter your choice:"))
-print("you chose",listOfCatClasses[choice].GetCategory())
+# Keep asking until the user gives a valid choice
+validChoice = False
+while validChoice == False:
+    try:
+        choice = int(input("Enter your choice: "))   # fails here if it's not a number
+        if choice < 0:
+            raise IndexError  # treat negatives as invalid too
+        chosen = listOfCatClasses[choice]   # fails here if the number is off the menu
+        validChoice = True 
+    except ValueError:
+        print("Please enter a number, not text.")
+    except IndexError:
+        print("That number is not on the menu. Try again.")
+
+print("You chose", listOfCatClasses[choice].GetCategory())
 
 #print(lines['category_title'], "contains", lines['category_description'])

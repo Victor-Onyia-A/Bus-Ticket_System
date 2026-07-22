@@ -34,7 +34,6 @@ with open('mobile_products.csv', mode = 'r') as file:
             listOfCodes.append(code)
             cat1 = Category (category,code) 
             listOfCatClasses.append(cat1)
-            #print("For",cat1.GetCategory(),"enter",cat1.GetCode())
             code += 1
 
 
@@ -57,4 +56,28 @@ while validChoice == False:
 
 print("You chose", listOfCatClasses[choice].GetCategory())
 
-#print(lines['category_title'], "contains", lines['category_description'])
+chosenCategory = listOfCatClasses[choice].GetCategory()   # name of the category picked
+
+listOfTopUpClasses = []   # will hold TopUp objects for the chosen category
+listOfTopUpTitles = []    # tracks titles already added, to skip duplicates
+
+with open('mobile_products.csv', mode='r') as file:
+    csvFile = csv.DictReader(file)
+    topUpCode = 0
+    for lines in csvFile:
+        # only rows belonging to the category the user chose
+        if lines['category_title'] == chosenCategory:
+            title = lines['topup_title']
+            # some top-ups repeat across rows, so skip duplicates
+            if title not in listOfTopUpTitles:
+                listOfTopUpTitles.append(title)
+                price = lines['topup_price_in_pence']
+                topup1 = TopUp(title, price, topUpCode)   # make the object
+                listOfTopUpClasses.append(topup1)
+                topUpCode += 1
+
+print() #adds space (for easier usability for the customer)
+print("Top-up types in", chosenCategory)
+for topup in listOfTopUpClasses:
+    pounds = int(topup.GetPrice()) / 100   # price is in pence, /100 for pounds
+    print("For", topup.GetTitle(), "(£" + str(pounds) + ") enter", topup.GetCode())

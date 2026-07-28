@@ -15,5 +15,4 @@ Use Case 2 – List top-up types in a category
 Once the user has chosen a category, the program shows every top-up type
 available in that category, with its price.
 A TopUp class stores each top-up's title, price and menu code.
-Prices are stored in pence in the CSV, so they are divided by 100
-to display in pounds.
+Prices are stored in pence in the CSV, so they are divided by 100 to display in pounds.

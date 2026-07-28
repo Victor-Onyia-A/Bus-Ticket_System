@@ -92,8 +92,17 @@ with open('mobile_products.csv', mode='r') as file:
             # some top-ups repeat across rows, so skip duplicates
             if title not in listOfTopUpTitles:
                 listOfTopUpTitles.append(title)
-                price = lines['topup_price_in_pence']
-                topup1 = TopUp(title, price, topUpCode)   # make the object
+                price = lines['topup_price_in_pence'] 
+
+                topup1 = TopUp(title, price, topUpCode,
+                    lines['topup_description'],
+                    lines['topup_entitlement_type'],
+                    lines['topup_entitlement_unit'],
+                    lines['topup_entitlement_value'],
+                    lines['topup_entitlement_quantity'],
+                    lines['topup_passenger_class_name'],
+                    lines['topup_passenger_class_quantity'])# make the object
+                
                 listOfTopUpClasses.append(topup1)
                 topUpCode += 1
 

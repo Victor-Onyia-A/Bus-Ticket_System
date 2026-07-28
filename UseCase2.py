@@ -79,5 +79,5 @@ with open('mobile_products.csv', mode='r') as file:
 print() #adds space (for easier usability for the customer)
 print("Top-up types in", chosenCategory)
 for topup in listOfTopUpClasses:
-    pounds = int(topup.GetPrice()) / 100   # price is in pence, /100 for pounds
+    pounds = int(topup.GetPrice()) / 100  # price is in pence, /100 for pounds
     print("For", topup.GetTitle(), "(£" + str(pounds) + ") enter", topup.GetCode())

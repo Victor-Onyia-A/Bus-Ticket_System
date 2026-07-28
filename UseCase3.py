@@ -9,7 +9,6 @@ class Category:
         return self.code
 #The TopUp class
 class TopUp:
-class TopUp:
     def __init__(self, title, price, code, description, entType, entUnit, entValue, entQuantity, passengerName, passengerQuantity):
         self.title = title# topup name
         self.price = price #price in pence 
@@ -93,7 +92,6 @@ with open('mobile_products.csv', mode='r') as file:
             if title not in listOfTopUpTitles:
                 listOfTopUpTitles.append(title)
                 price = lines['topup_price_in_pence'] 
-
                 topup1 = TopUp(title, price, topUpCode,
                     lines['topup_description'],
                     lines['topup_entitlement_type'],
@@ -102,7 +100,6 @@ with open('mobile_products.csv', mode='r') as file:
                     lines['topup_entitlement_quantity'],
                     lines['topup_passenger_class_name'],
                     lines['topup_passenger_class_quantity'])# make the object
-                
                 listOfTopUpClasses.append(topup1)
                 topUpCode += 1
 
@@ -111,3 +108,35 @@ print("Top-up types in", chosenCategory)
 for topup in listOfTopUpClasses:
     pounds = int(topup.GetPrice()) / 100  # price is in pence, /100 for pounds
     print("For", topup.GetTitle(), "(£" + str(pounds) + ") enter", topup.GetCode())
+
+# USE CASE 3: show full details of a chosen top-up
+validTopUp = False
+while validTopUp == False:
+    try:
+        topupChoice = int(input("Enter the number of a top-up to see details: "))
+        if topupChoice < 0: # to stop input errors
+            raise IndexError
+        chosenTopUp = listOfTopUpClasses[topupChoice]
+        validTopUp = True
+    except ValueError:
+        print("Please enter a number, not text.")
+    except IndexError:
+        print("That number is not on the menu. Try again.")
+
+print()# space
+print("Details for", chosenTopUp.GetTitle())
+print("Description:", chosenTopUp.GetDescription())
+print("Price: £" + str(int(chosenTopUp.GetPrice()) / 100))
+print("Entitlement type:", chosenTopUp.GetEntType())
+
+if chosenTopUp.GetEntUnit() != "":
+    print("Duration:", chosenTopUp.GetEntValue(), chosenTopUp.GetEntUnit())
+else:
+    print("Duration: fixed date ticket")
+
+if chosenTopUp.GetEntQuantity() != "":
+    print("Number of entitlements:", chosenTopUp.GetEntQuantity())
+
+print("Passenger type:", chosenTopUp.GetPassengerName())
+print("Number of people covered:", chosenTopUp.GetPassengerQuantity())
+

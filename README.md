@@ -23,4 +23,12 @@ price, entitlement type, duration, number of
 entitlements, passenger type and number of people covered.
 The TopUp class was extended to store all detail fields.
 
+Use Case 4  Purchase a topup
+After viewing a topup's details, the user can choose to buy it. A confirmed
+purchase is recorded so it can later be saved to a file.
+A Purchase class stores the title and price of a bought topup.
+Confirmed purchases are added to a list of Purchase objects.
+The list is the structure that Use Cases 6 and 7 will save to, and load from, a file.
+
+
 

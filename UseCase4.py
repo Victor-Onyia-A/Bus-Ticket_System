@@ -149,3 +149,21 @@ if chosenTopUp.GetEntQuantity() != "":
 print("Passenger type:", chosenTopUp.GetPassengerName())
 print("Number of people covered:", chosenTopUp.GetPassengerQuantity())
 
+#USE CASE 4: purchase the chosen topup
+listOfPurchases = []   # will hold every Purchase the customer makes
+
+confirm = input("Do you want to buy this topup? (yes/no): ")
+if confirm == "yes":
+    # make a Purchase object from the top-up chosen in Use Case 3
+    newPurchase = Purchase(chosenTopUp.GetTitle(), chosenTopUp.GetPrice())
+    listOfPurchases.append(newPurchase)
+    print("Purchase added:", newPurchase.GetTopUpTitle())
+else:
+    print("No purchase made.")
+
+# show what's in the basket so far
+print()
+print("Your purchases so far:")
+for p in listOfPurchases:
+    print("-", p.GetTopUpTitle(), "£" + str(int(p.GetPrice()) / 100))
+

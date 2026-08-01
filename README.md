@@ -16,3 +16,19 @@ Once the user has chosen a category, the program shows every top-up type
 available in that category, with its price.
 A TopUp class stores each top-up's title, price and menu code.
 Prices are stored in pence in the CSV, so they are divided by 100 to display in pounds.
+
+Use Case 3 View full details of a top-up
+After choosing a top-up, the program displays its full details: description,
+price, entitlement type, duration, number of
+entitlements, passenger type and number of people covered.
+The TopUp class was extended to store all detail fields.
+
+Use Case 4  Purchase a topup
+After viewing a topup's details, the user can choose to buy it. A confirmed
+purchase is recorded so it can later be saved to a file.
+A Purchase class stores the title and price of a bought topup.
+Confirmed purchases are added to a list of Purchase objects.
+The list is the structure that Use Cases 6 and 7 will save to, and load from, a file.
+
+
+

@@ -30,5 +30,19 @@ A Purchase class stores the title and price of a bought topup.
 Confirmed purchases are added to a list of Purchase objects.
 The list is the structure that Use Cases 6 and 7 will save to, and load from, a file.
 
+#Use Case 5 Buy multiple tickets in one session
+The purchasing steps are wrapped in a while loop so the customer can buy
+several tickets in a single run, and is asked after each purchase whether
+they want to continue.
+
+The list of purchases is created once, before the loop, so it keeps every ticket bought instead of being reset each time.
+After each purchase the user is asked "buy another?" anything other than "yes" ends the loop.
+When the loop ends, all purchases made in the session are listed.
+
+
+
+
+
+
 
 

@@ -90,30 +90,31 @@ try:
             if len(row) == 2:                     #skip any blank/broken lines
                 oldPurchase = Purchase(row[0], row[1])   # rebuild the Purchase object
                 listOfPurchases.append(oldPurchase)
-    print("Loaded", len(listOfPurchases), "previous purchase(s).")
+    print("Loaded", len(listOfPurchases), "previous purchase's.")
 except FileNotFoundError:
     # no file yet that's fine (it just means no purchases have been saved before)
     print("No previous purchases found. Starting fresh.")
 
-# USE CASE 8: choose customer or admin, with admin login
-admin = Admin("start", "open")
+#USE CASE 8: choose customer or admin, with admin login
+admin = Admin("manager", "start")
 isAdmin = False
-
-userType = input("Are you a customer or admin? (customer/admin): ")
+# keep asking until they enter a valid user type
+userType = ""
+while userType != "customer" and userType != "admin":
+    userType = input("Are you a customer or admin? (customer/admin): ")
+    if userType != "customer" and userType != "admin":
+        print("Please type 'customer' or 'admin'.")
 if userType == "admin":
-    # keep asking for the password until it's correct, or they choose to exit
     while isAdmin == False:
-        attempt = input("Enter admin password (or type 'exit' to continue as customer): ")
+        attempt = input("Enter admin password or type 'exit' to continue as customer: ")
         if attempt == "exit":
             print("Continuing as customer.")
-            break                      # leave the loop without logging in
+            break
         if admin.CheckPassword(attempt):
             isAdmin = True
             print("Admin login successful.")
         else:
             print("Wrong password. Try again.")
-
-
 
 
 #Reads csv file

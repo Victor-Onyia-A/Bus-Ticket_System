@@ -53,6 +53,7 @@ class Purchase:
 
 #Part of UseCase8 Admin Login
 #Base class for anyone who uses the system
+#inheritance class, i thought the brief said i could do it, but as it turns out it didnt(too deep to turn back)
 class User:
     def __init__(self, username):
         self.username = username
@@ -101,7 +102,7 @@ isAdmin = False
 # keep asking until they enter a valid user type
 userType = ""
 while userType != "customer" and userType != "admin":
-    userType = input("Are you a customer or admin? (customer/admin): ")
+    userType = input("Are you a customer or admin? (customer/admin): ").lower()
     if userType != "customer" and userType != "admin":
         print("Please type 'customer' or 'admin'.")
 if userType == "admin":
@@ -115,7 +116,10 @@ if userType == "admin":
             print("Admin login successful.")
         else:
             print("Wrong password. Try again.")
-
+else:
+    # the user chose customer, so create a Customer object
+    customer = Customer("User")
+    print("Welcome,", customer.GetUsername())
 
 #Reads csv file
 with open('mobile_products.csv', mode = 'r') as file:

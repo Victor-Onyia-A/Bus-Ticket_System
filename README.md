@@ -41,7 +41,6 @@ When the loop ends, all purchases made in the session are listed.
 #Use Case 6 Save purchases to a file
 When the program closes, all purchases from the session are written to
 purchases.csv so they are not lost.
-
 The file is opened in write mode using csv.writer.
 Each Purchase is written as one line: title,price.
 The whole write is wrapped in try/except so a file error does notcrash the program.

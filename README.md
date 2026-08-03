@@ -34,10 +34,18 @@ The list is the structure that Use Cases 6 and 7 will save to, and load from, a 
 The purchasing steps are wrapped in a while loop so the customer can buy
 several tickets in a single run, and is asked after each purchase whether
 they want to continue.
-
 The list of purchases is created once, before the loop, so it keeps every ticket bought instead of being reset each time.
 After each purchase the user is asked "buy another?" anything other than "yes" ends the loop.
 When the loop ends, all purchases made in the session are listed.
+
+#Use Case 6 Save purchases to a file
+When the program closes, all purchases from the session are written to
+purchases.csv so they are not lost.
+The file is opened in write mode using csv.writer.
+Each Purchase is written as one line: title,price.
+The whole write is wrapped in try/except so a file error does notcrash the program.
+
+
 
 
 

@@ -46,7 +46,13 @@ The file is opened in write mode using csv.writer.
 Each Purchase is written as one line: title,price.
 The whole write is wrapped in try/except so a file error does notcrash the program.
 
-
+#Use Case 7 Load previous purchases at startup
+When the program starts, it reads purchases.csv and rebuilds any previously
+saved purchases so they are not lost between runs.
+The file is read with csv.reader 
+Each row is a title and price, used to rebuild a Purchase object.
+A missing file is caught with except FileNotFoundError, so the first ever run does not crash it just starts with no history.
+Works as a pair with UseCase6 load on start, save the whole list onexit, so purchases build up across sessions.
 
 
 

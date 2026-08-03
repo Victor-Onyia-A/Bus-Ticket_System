@@ -95,19 +95,25 @@ except FileNotFoundError:
     # no file yet that's fine (it just means no purchases have been saved before)
     print("No previous purchases found. Starting fresh.")
 
-#USE CASE 8: choose customer or admin, with admin login
+# USE CASE 8: choose customer or admin, with admin login
 admin = Admin("start", "open")
 isAdmin = False
+
 userType = input("Are you a customer or admin? (customer/admin): ")
 if userType == "admin":
-    # keep asking for the password until it's correct
+    # keep asking for the password until it's correct, or they choose to exit
     while isAdmin == False:
-        attempt = input("Enter admin password: ")
+        attempt = input("Enter admin password (or type 'exit' to continue as customer): ")
+        if attempt == "exit":
+            print("Continuing as customer.")
+            break                      # leave the loop without logging in
         if admin.CheckPassword(attempt):
             isAdmin = True
             print("Admin login successful.")
         else:
             print("Wrong password. Try again.")
+
+
 
 
 #Reads csv file

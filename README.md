@@ -53,6 +53,23 @@ Each row is a title and price, used to rebuild a Purchase object.
 A missing file is caught with except FileNotFoundError, so the first ever run does not crash it just starts with no history.
 Works as a pair with UseCase6 load on start, save the whole list onexit, so purchases build up across sessions.
 
+#Use Case 8 Admin login
+The user chooses to continue as a customer or log in as an admin, with admin
+access protected by a password.
+
+A User base class holds a username. Customer and Admin both inherit from it (inheritance), and Admin adds a password and a CheckPassword method.
+The usertype prompt loops until "customer" or "admin" is entered, somisspellings are rejected.
+The admin password loops with no attempt limit; typing "exit" continuesas a customer so a non-admin is never trapped.
+Choosing customer creates a Customer object and greets the user.
+An isAdmin flag records admin access, which will unlock price changes inUse Case 9.
+
+
+#Use Case 9 Admin changes a top-up price
+A logged-in admin can change the price of a top up for the current session.
+The block only runs if isAdmin is True, so customers skip it entirely.
+This is where the login flag from Use Case 8 is used.
+The admin picks a category, then a top-up, then enters a new price in pence. All three inputs are validated with try/except loops.
+The new price is set directly on the TopUp object (topUpToChange.price).
 
 
 
